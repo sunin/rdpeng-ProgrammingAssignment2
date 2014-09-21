@@ -23,18 +23,14 @@ makeCacheMatrix <- function(x=matrix()) {
 
 
 cacheSolve <- function(x,...) {
-	if(NROW(x) == NCOL(x)) {
-		inverse <- x$getinverse()
-		if(!is.null(inverse)) {
-			message("getting cached data ")
-			return (inverse)
-		}
-		data <- x$get()
-		inverse <- solve(data, ...)
-		x$setinverse(inverse)
-		inverse
+	inverse <- x$getinverse()
+	if(!is.null(inverse)) {
+		message("getting cached data ")
+		return (inverse)
 	}
-	else {
-		print("[*] matrix is not square, please give square matrix")
+	data <- x$get()
+	inverse <- solve(data, ...)
+	x$setinverse(inverse)
+	inverse
 	}
-}
+
